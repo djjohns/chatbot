@@ -1,8 +1,6 @@
 # Chatbot
 
-![Empty ChatBot](./ChatBot_blank.png)
-
-![Prompted ChatBot](./ChatBot_propmted.png)
+![Chatbot Example](./chatbot_example.gif)
 
 This is a chatbot application that utilizes OpenAI's API for natural language processing and Gradio for the user interface. The application is containerized using Docker for easy deployment and management of app dependencies.
 
