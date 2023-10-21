@@ -17,25 +17,23 @@ try:
 except Exception as e:
     print(f'Caught an Exception: {e}')
 
-HISTORY_FILE = "history.json"
+
+history_file = "chat_history.json"
 
 def predict(message, history):
-    # Load previous history from file
-    if os.path.exists(HISTORY_FILE):
-        with open(HISTORY_FILE, "r") as file:
-            stored_history = json.load(file)
-    else:
-        stored_history = []
-
-    # Combine stored history with current conversation history
-    history_openai_format = stored_history + history
-    
-    # Convert history to OpenAI format
     history_openai_format = []
+    if os.path.isfile(history_file):
+        with open(history_file, "r") as f:
+            history_openai_format = json.load(f)
+
     for human, assistant in history:
-        history_openai_format.append({"role": "user", "content": human })
+        history_openai_format.append({"role": "user", "content": human})
         history_openai_format.append({"role": "assistant", "content": assistant})
+        
     history_openai_format.append({"role": "user", "content": message})
+
+    with open(history_file, "w") as f:
+        json.dump(history_openai_format, f)
 
     response = openai.ChatCompletion.create(
         model='gpt-3.5-turbo',
@@ -46,13 +44,9 @@ def predict(message, history):
 
     partial_message = ""
     for chunk in response:
-        if len(chunk['choices'][0]['message']['content']) != 0:
-            partial_message = partial_message + chunk['choices'][0]['message']['content']
+        if len(chunk['choices'][0]['delta']) != 0:
+            partial_message = partial_message + chunk['choices'][0]['delta']['content']
             yield partial_message
-
-    # Save the updated history to file
-    with open(HISTORY_FILE, "w") as file:
-        json.dump(history_openai_format, file, indent=4)
 
 demo = gr.ChatInterface(
     predict,
