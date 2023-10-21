@@ -69,4 +69,4 @@ demo = gr.ChatInterface(
 ).queue()
 
 if __name__=='__main__':
-    demo.launch(server_name="0.0.0.0", server_port=7860, favicon_path="./assets/favicon/icons8-chatbot-32.png")
+    demo.launch(server_name="0.0.0.0", server_port=7878, favicon_path="./assets/favicon/icons8-chatbot-32.png")

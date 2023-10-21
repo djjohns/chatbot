@@ -1,12 +1,13 @@
 version: '3'
 services:
   app:
+    image: chatbot_dev
     # Build from dockerfile.
     build: .
     # Specify a container name.
-    container_name: ChatBot
+    container_name: ChatBotDEV
     # Expose ports container : host
     ports:
-      - 7860:7860
+      - 7878:7878
     # Command to start the server.
     command: python chatbot.py
