@@ -56,11 +56,11 @@ demo = gr.ChatInterface(
         bubble_full_width=False,
         avatar_images=("./assets/img/user.png", "./assets/img/bot.png")
     ),
-    title='ChatBot',
+    title='ChatBotDev',
     theme=gr.themes.Soft(),
     css="footer {visibility: hidden}",
     analytics_enabled=False
 ).queue()
 
 if __name__=='__main__':
-    demo.launch(server_name="0.0.0.0", server_port=7860, favicon_path="./assets/favicon/icons8-chatbot-32.png")
+    demo.launch(server_name="0.0.0.0", server_port=7676, favicon_path="./assets/favicon/icons8-chatbot-32.png")
