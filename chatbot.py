@@ -54,7 +54,7 @@ demo = gr.ChatInterface(
         show_copy_button=False,
         show_share_button=True,
         bubble_full_width=False,
-        avatar_images=("./assets/img/user.svg", "./assets/img/bot.png")
+        avatar_images=("./assets/img/user.png", "./assets/img/bot.png")
     ),
     title='ChatBot',
     theme=gr.themes.Soft(),
