@@ -2,6 +2,8 @@ version: '3'
 services:
   app:
     image: chatbot
+    env_file:
+      - .env
     # Build from dockerfile.
     build: .
     # Specify a container name.
@@ -11,3 +13,11 @@ services:
       - 7860:7860
     # Command to start the server.
     command: python chatbot.py
+    depends_on:
+      - ai-runner
+
+  ai-runner:
+    provider:
+      type: model
+      options:
+        model: ${MODEL:-ai/llama3.2:latest}
